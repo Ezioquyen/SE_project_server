@@ -1,5 +1,7 @@
 package com.example.se_project_server.entity;
 
+import com.example.se_project_server.serializable.BillIngredientId;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -14,14 +16,19 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 @Entity
 @Component
-@Table(name = "ingredient_bill")
-public class IngredientBill {
-    @Id
-    private String id;
+@Table(name = "bill_ingredient")
+public class BillIngredient {
+    @EmbeddedId
+    private BillIngredientId billIngredientId;
+
     @ManyToOne
     @JsonIgnore
+    @MapsId("ingredientId")
     @JoinColumn(name = "ingredient_id")
     private Ingredient ingredient;
-    private String buyDate;
-    private Integer cost;
+    @JsonIgnore
+    @ManyToOne
+    @MapsId("billId")
+    @JoinColumn(name = "bill_id")
+    private BuyIngredientBill bill;
 }

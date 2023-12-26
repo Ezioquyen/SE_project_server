@@ -22,12 +22,12 @@ public class BillProduct {
 
     @ManyToOne
     @JsonIgnore
-    @MapsId("staffId")
+    @MapsId("productId")
     @JoinColumn(name = "product_id")
     private Product product;
     @JsonIgnore
     @ManyToOne
     @MapsId("billId")
     @JoinColumn(name = "bill_id")
-    private Bill bill;
+    private OrderBill bill;
 }

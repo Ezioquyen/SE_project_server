@@ -1,8 +1,7 @@
 package com.example.se_project_server.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,11 +14,10 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 @Entity
 @Component
-@Table(name = "bill")
-public class Bill {
+@Table(name = "buy_ingredient_bill")
+public class BuyIngredientBill {
     @Id
     private String id;
     private String buyDate;
-    private String customerPhoneNumber;
-    private String userStaffId;
+    private Integer cost;
 }
