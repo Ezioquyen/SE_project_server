@@ -3,11 +3,10 @@ package com.example.se_project_server.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.stereotype.Component;
+
+import java.util.Date;
 
 @Getter
 @Setter
@@ -21,5 +20,5 @@ public class Customer {
     @Id
     private String phoneNumber;
     private String name;
-    private String dob;
+    private Date dob;
 }

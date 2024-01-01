@@ -30,4 +30,5 @@ public class BillProduct {
     @MapsId("billId")
     @JoinColumn(name = "bill_id")
     private OrderBill bill;
+    private Integer productCount;
 }
