@@ -19,5 +19,5 @@ public class BuyIngredientBill {
     @Id
     private String id;
     private String buyDate;
-    private Integer cost;
+    private Integer price;
 }

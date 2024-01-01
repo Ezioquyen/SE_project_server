@@ -19,7 +19,8 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    private Integer cost;
+    private Integer price;
     private Boolean available;
     private Double discount;
+    private String image;
 }
