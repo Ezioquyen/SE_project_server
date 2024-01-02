@@ -15,8 +15,9 @@ import java.text.SimpleDateFormat;
 
 import java.util.List;
 import java.util.Map;
+
 @Service
-public class OrderBillServiceImp implements OrderBillService{
+public class OrderBillServiceImp implements OrderBillService {
     private final BillProductRepository billProductRepository;
     private final OrderBillRepository orderBillRepository;
     private final ProductRepository productRepository;
@@ -35,8 +36,11 @@ public class OrderBillServiceImp implements OrderBillService{
         orderBill.setBuyDate((new SimpleDateFormat("dd/MM/yyyy").parse(bill.get("buyDate").toString())));
         orderBill.setCustomerPhoneNumber(bill.get("customerPhone").toString());
         orderBill.setUserStaffId(bill.get("userStaffId").toString());
+        orderBill.setReceived(Integer.parseInt(bill.get("received").toString()));
+        orderBill.setChangeMoney(Integer.parseInt(bill.get("changeMoney").toString()));
+        orderBill.setPayMethod((Boolean) bill.get("payMethod"));
         orderBillRepository.save(orderBill);
-        for(Map<String,Object> product : (List<Map<String,Object>>) bill.get("products")){
+        for (Map<String, Object> product : (List<Map<String, Object>>) bill.get("products")) {
             BillProduct billProduct = new BillProduct();
             BillProductId billProductId = new BillProductId();
             billProductId.setBillId(orderBill.getId());

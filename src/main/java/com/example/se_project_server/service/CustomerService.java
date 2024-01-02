@@ -1,7 +1,13 @@
 package com.example.se_project_server.service;
 
-import org.springframework.stereotype.Service;
+import com.example.se_project_server.entity.Customer;
+import org.springframework.stereotype.Component;
 
-@Service
+import java.util.Optional;
+
+@Component
 public interface CustomerService {
+    boolean isCustomerExist(String phoneNumber);
+    Optional<Customer> getCustomer(String phoneNumber);
+    String saveCustomer(Customer customer);
 }

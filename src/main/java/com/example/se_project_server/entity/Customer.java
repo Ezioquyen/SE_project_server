@@ -16,7 +16,6 @@ import java.util.Date;
 @Component
 @Table(name = "customer")
 public class Customer {
-
     @Id
     private String phoneNumber;
     private String name;

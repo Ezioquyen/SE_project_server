@@ -25,4 +25,7 @@ public class OrderBill {
     private String customerPhoneNumber;
     private String userStaffId;
     private Integer total;
+    private Integer received;
+    private Integer changeMoney;
+    private Boolean payMethod;
 }
