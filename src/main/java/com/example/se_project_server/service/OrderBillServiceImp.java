@@ -47,7 +47,9 @@ public class OrderBillServiceImp implements OrderBillService {
             billProductId.setProductId(Integer.parseInt(product.get("productId").toString()));
             billProduct.setProductCount(Integer.parseInt(product.get("count").toString()));
             billProduct.setBill(orderBill);
-            billProduct.setProduct(productRepository.getById((Integer.parseInt(product.get("productId").toString()))));
+            Product productFromId = new Product();
+            productFromId.setId(Integer.parseInt(product.get("productId").toString()));
+            billProduct.setProduct(productFromId);
             billProduct.setBillProductId(billProductId);
             billProductRepository.save(billProduct);
         }

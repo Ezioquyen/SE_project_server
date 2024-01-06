@@ -16,12 +16,12 @@ public class CustomerServiceImp implements CustomerService {
 
     @Override
     public boolean isCustomerExist(String phoneNumber) {
-        return customerRepository.existsById(phoneNumber);
+        return customerRepository.existsCustomerByPhoneNumber(phoneNumber);
     }
 
     @Override
-    public Optional<Customer> getCustomer(String phoneNumber) {
-        return customerRepository.findById(phoneNumber);
+    public Customer getCustomer(String phoneNumber) {
+        return customerRepository.findByPhoneNumber(phoneNumber);
     }
 
     @Override
