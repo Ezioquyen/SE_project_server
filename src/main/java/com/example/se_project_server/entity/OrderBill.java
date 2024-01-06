@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
+import java.time.LocalDate;
+
 
 @Getter
 @Setter
@@ -21,7 +22,7 @@ import java.util.Date;
 public class OrderBill {
     @Id
     private String id;
-    private Date buyDate;
+    private LocalDate buyDate;
     private String customerPhoneNumber;
     private String userStaffId;
     private Integer total;
