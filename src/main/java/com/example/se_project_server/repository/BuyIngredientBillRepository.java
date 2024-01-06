@@ -28,14 +28,14 @@ public interface BuyIngredientBillRepository extends JpaRepository<BuyIngredient
             + "where i.id = c.iid;", nativeQuery = true)
     List<IBillIngredient> getIngredientCount(@Param("dateStart") LocalDate dateStart, @Param("dateEnd") LocalDate dateEnd);
 
-    @Query(value = "select bib.buy_date as name, sum(bib.cost) as count "
+    @Query(value = "select bib.buy_date as name, sum(bib.price) as count "
             + "from buy_ingredient_bill as bib "
             + "where bib.buy_date between :dateStart and :dateEnd "
             + "group by name "
             + "order by name asc;", nativeQuery = true)
     List<IBillProduct> getBIPerDay(@Param("dateStart") LocalDate dateStart, @Param("dateEnd") LocalDate dateEnd);
 
-    @Query(value = "select date_format(bib.buy_date, '%Y-%m') as name, sum(bib.cost) as count "
+    @Query(value = "select date_format(bib.buy_date, '%Y-%m') as name, sum(bib.price) as count "
             + "from buy_ingredient_bill as bib "
             + "where bib.buy_date between :dateStart and :dateEnd "
             + "group by name "

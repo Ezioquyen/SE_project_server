@@ -5,14 +5,16 @@ import com.example.se_project_server.entity.OrderBill;
 import com.example.se_project_server.entity.Product;
 import com.example.se_project_server.repository.BillProductRepository;
 import com.example.se_project_server.repository.OrderBillRepository;
-import com.example.se_project_server.repository.ProductRepository;
+
 import com.example.se_project_server.serializable.BillProductId;
 import org.springframework.stereotype.Service;
 
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
+
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 
@@ -20,20 +22,19 @@ import java.util.Map;
 public class OrderBillServiceImp implements OrderBillService {
     private final BillProductRepository billProductRepository;
     private final OrderBillRepository orderBillRepository;
-    private final ProductRepository productRepository;
 
-    public OrderBillServiceImp(BillProductRepository billProductRepository, OrderBillRepository orderBillRepository, ProductRepository productRepository) {
+
+    public OrderBillServiceImp(BillProductRepository billProductRepository, OrderBillRepository orderBillRepository) {
         this.billProductRepository = billProductRepository;
         this.orderBillRepository = orderBillRepository;
-        this.productRepository = productRepository;
     }
 
     @Override
-    public String saveBill(Map<String, Object> bill) throws ParseException {
+    public String saveBill(Map<String, Object> bill){
         OrderBill orderBill = new OrderBill();
-        orderBill.setId(bill.get("id").toString());
+        orderBill.setId("OB" + bill.get("id").toString());
         orderBill.setTotal(Integer.parseInt(bill.get("total").toString()));
-        orderBill.setBuyDate((new SimpleDateFormat("dd/MM/yyyy").parse(bill.get("buyDate").toString())));
+        orderBill.setBuyDate(LocalDate.parse(bill.get("buyDate").toString(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         orderBill.setCustomerPhoneNumber(bill.get("customerPhone").toString());
         orderBill.setUserStaffId(bill.get("userStaffId").toString());
         orderBill.setReceived(Integer.parseInt(bill.get("received").toString()));
