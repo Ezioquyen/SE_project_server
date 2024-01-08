@@ -12,6 +12,7 @@ public class BillIngredientServiceImp implements  BillIngredientService{
     private  final BuyIngredientBillRepository buyIngredientBillRepo;
 
     public BillIngredientServiceImp(BuyIngredientBillRepository buyIngredientBillRepo) {
+        System.out.println("ERROR");
         this.buyIngredientBillRepo = buyIngredientBillRepo;
     }
 
