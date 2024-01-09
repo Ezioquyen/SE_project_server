@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -20,6 +20,6 @@ import java.time.LocalDate;
 public class BuyIngredientBill {
     @Id
     private String id;
-    private LocalDate buyDate;
+    private Date buyDate;
     private Integer price;
 }

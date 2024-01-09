@@ -7,4 +7,6 @@ import java.util.List;
 @Component
 public interface ProductService {
      List<Product> getAllProduct();
+     void setProduct(Product product);
+     void deleteProduct(Integer id);
 }

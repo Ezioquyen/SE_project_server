@@ -17,4 +17,13 @@ public class ProductServiceImp implements ProductService{
     public List<Product> getAllProduct() {
         return productRepository.findAll();
     }
+    @Override
+    public void setProduct(Product product) {
+        System.out.println(product);
+        productRepository.save(product);
+    }
+    @Override
+    public void deleteProduct(Integer id) {
+        productRepository.deleteById(id);
+    }
 }

@@ -9,8 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
-
+import java.util.Date;
 
 @Getter
 @Setter
@@ -24,7 +23,7 @@ public class Staff {
     private String id;
     private String name;
     private String email;
-    private LocalDate dob;
+    private Date dob;
     private String phoneNumber;
     private String address;
     private Boolean gender;
