@@ -22,18 +22,14 @@ public class ProductController {
         return ResponseEntity.ok(productService.getAllProduct());
     }
     @PostMapping("/save")
-    public void saveProduct(@RequestBody String product){
+    public void saveProduct(@RequestBody Product product){
         System.out.println("add"+product);
-        JSONObject jsonObject = new JSONObject(product);
-        Product product1 = new Product(jsonObject.getInt("id"),jsonObject.getString("name"),jsonObject.getInt("price"),jsonObject.getBoolean("available"),jsonObject.getDouble("discount"),jsonObject.getString("image"));
-        productService.setProduct(product1);
-//        return product;
+        productService.setProduct(product);
     }
     @PutMapping("/update")
-    public void updateProduct(@RequestBody String product){
+    public void updateProduct(@RequestBody Product product){
         System.out.println("update"+product);
-        JSONObject jsonObject = new JSONObject(product);
-        Product product1 = new Product(jsonObject.getInt("id"),jsonObject.getString("name"),jsonObject.getInt("price"),jsonObject.getBoolean("available"),jsonObject.getDouble("discount"),jsonObject.getString("image"));
+        productService.setProduct(product);
     }
     @DeleteMapping("/delete")
     public void deleteProduct(@RequestBody String id){
