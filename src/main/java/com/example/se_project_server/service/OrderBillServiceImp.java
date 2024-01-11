@@ -10,9 +10,6 @@ import com.example.se_project_server.serializable.BillProductId;
 import org.springframework.stereotype.Service;
 
 
-
-
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -30,15 +27,17 @@ public class OrderBillServiceImp implements OrderBillService {
     }
 
     @Override
-    public String saveBill(Map<String, Object> bill){
+    public String saveBill(Map<String, Object> bill) {
         OrderBill orderBill = new OrderBill();
-        orderBill.setId("OB" + bill.get("id").toString());
+        orderBill.setId(bill.get("id").toString());
         orderBill.setTotal(Integer.parseInt(bill.get("total").toString()));
-        orderBill.setBuyDate(LocalDate.parse(bill.get("buyDate").toString(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-        orderBill.setCustomerPhoneNumber(bill.get("customerPhone").toString());
+        orderBill.setBuyDate(LocalDate.parse(bill.get("buyDate").toString(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        if (bill.get("customerPhoneNumber") != null) orderBill.setCustomerPhoneNumber(bill.get("customerPhoneNumber").toString());
         orderBill.setUserStaffId(bill.get("userStaffId").toString());
         orderBill.setReceived(Integer.parseInt(bill.get("received").toString()));
         orderBill.setChangeMoney(Integer.parseInt(bill.get("changeMoney").toString()));
+        orderBill.setOriginal(Integer.parseInt(bill.get("original").toString()));
+        orderBill.setDeduction(Integer.parseInt(bill.get("deduction").toString()));
         orderBill.setPayMethod((Boolean) bill.get("payMethod"));
         orderBillRepository.save(orderBill);
         for (Map<String, Object> product : (List<Map<String, Object>>) bill.get("products")) {
@@ -47,7 +46,7 @@ public class OrderBillServiceImp implements OrderBillService {
             billProductId.setBillId(orderBill.getId());
             billProductId.setProductId(Integer.parseInt(product.get("productId").toString()));
             billProduct.setProductCount(Integer.parseInt(product.get("count").toString()));
-            billProduct.setBill(orderBill);
+            billProduct.setOrderBill(orderBill);
             Product productFromId = new Product();
             productFromId.setId(Integer.parseInt(product.get("productId").toString()));
             billProduct.setProduct(productFromId);

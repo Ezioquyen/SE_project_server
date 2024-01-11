@@ -22,7 +22,7 @@ public class CustomerController {
     public Boolean checkCustomer(@PathVariable String phoneNumber){
         return customerService.isCustomerExist(phoneNumber);
     }
-    @PostMapping("/save")
+    @PutMapping("/save")
     public String saveCustomer(@RequestBody Customer customer){
         return customerService.saveCustomer(customer);
     }

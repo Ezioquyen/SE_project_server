@@ -21,4 +21,5 @@ public class Customer {
     private String phoneNumber;
     private String name;
     private LocalDate dob;
+    private Integer total;
 }

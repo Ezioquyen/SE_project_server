@@ -2,6 +2,7 @@ package com.example.se_project_server.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,6 +11,7 @@ import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.util.List;
 
 
 @Getter
@@ -29,4 +31,9 @@ public class OrderBill {
     private Integer received;
     private Integer changeMoney;
     private Boolean payMethod;
+    private Integer deduction;
+    private Integer original;
+    private Integer promotion;
+    @OneToMany(mappedBy = "orderBill")
+    private List<BillProduct> billProducts;
 }

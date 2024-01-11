@@ -29,6 +29,6 @@ public class BillProduct {
     @ManyToOne
     @MapsId("billId")
     @JoinColumn(name = "bill_id")
-    private OrderBill bill;
+    private OrderBill orderBill;
     private Integer productCount;
 }

@@ -30,5 +30,5 @@ public class BillIngredient {
     @ManyToOne
     @MapsId("billId")
     @JoinColumn(name = "bill_id")
-    private BuyIngredientBill bill;
+    private BuyIngredientBill buyIngredientBill;
 }
