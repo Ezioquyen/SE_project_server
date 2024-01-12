@@ -20,11 +20,11 @@ public class IngredientController {
         return ResponseEntity.ok(ingredientService.getAllIngredient());
     }
     @PostMapping("/save")
-    public void saveIngredient(@RequestBody String ingredient){
-        System.out.println(ingredient);
-        JSONObject jsonObject = new JSONObject(ingredient);
-        Ingredient ingredient1 = new Ingredient(jsonObject.getInt("id"), jsonObject.getString("name"), jsonObject.getInt("unit_Price"), jsonObject.getString("unit"));
-        ingredientService.setIngredient(ingredient1);
+    public void saveIngredient(@RequestBody Ingredient ingredient){
+        System.out.println("add"+ingredient);
+//        JSONObject jsonObject = new JSONObject(ingredient);
+//        Ingredient ingredient1 = new Ingredient(jsonObject.getInt("id"), jsonObject.getString("name"), jsonObject.getInt("unit_Price"), jsonObject.getString("unit"));
+        ingredientService.setIngredient(ingredient);
     }
     @DeleteMapping("/delete")
     public void deleteIngredient(@RequestBody String id){
