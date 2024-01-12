@@ -22,7 +22,7 @@ public class Ingredient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    private Integer unit_Price;
+    private Integer unitPrice;
     private String unit;
     @OneToMany(mappedBy = "ingredient")
     @JsonIgnore
