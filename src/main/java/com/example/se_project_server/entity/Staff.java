@@ -1,12 +1,7 @@
 package com.example.se_project_server.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -22,12 +17,28 @@ import java.time.LocalDate;
 public class Staff {
     @Id
     private String id;
+
+
     private String name;
+
+
     private String email;
+
+
     private LocalDate dob;
+
+
     private String phoneNumber;
+
+
     private String address;
-    private Boolean gender;
+
+
+    private String gender;
+
+
     private Integer salaryPerDay;
+
+
     private String role;
 }
