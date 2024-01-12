@@ -2,8 +2,7 @@ package com.example.se_project_server.controller;
 
 import com.example.se_project_server.entity.Ingredient;
 import com.example.se_project_server.service.IngredientService;
-import com.example.se_project_server.service.IngredientServiceImp;
-import org.json.JSONObject;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
