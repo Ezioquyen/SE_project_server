@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,5 +18,5 @@ public class TimekeepingId implements Serializable {
     @Column(name = "staff_id")
     String staffId;
     @Column(name="work_date")
-    LocalDate workDate;
+    String workDate;
 }
