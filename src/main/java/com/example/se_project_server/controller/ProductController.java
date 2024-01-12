@@ -1,13 +1,12 @@
 package com.example.se_project_server.controller;
 
-import com.example.se_project_server.entity.Customer;
+
 import com.example.se_project_server.entity.Product;
 import com.example.se_project_server.service.ProductService;
-import com.example.se_project_server.service.ProductServiceImp;
-import com.fasterxml.jackson.databind.util.JSONPObject;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.json.*;
+
 
 @RestController
 @RequestMapping("/products")

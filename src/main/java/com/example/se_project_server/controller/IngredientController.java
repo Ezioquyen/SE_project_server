@@ -21,8 +21,7 @@ public class IngredientController {
     @PostMapping("/save")
     public void saveIngredient(@RequestBody Ingredient ingredient){
         System.out.println("add"+ingredient);
-//        JSONObject jsonObject = new JSONObject(ingredient);
-//        Ingredient ingredient1 = new Ingredient(jsonObject.getInt("id"), jsonObject.getString("name"), jsonObject.getInt("unit_Price"), jsonObject.getString("unit"));
+
         ingredientService.setIngredient(ingredient);
     }
     @DeleteMapping("/delete")
