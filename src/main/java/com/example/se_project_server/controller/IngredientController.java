@@ -22,6 +22,11 @@ public class IngredientController {
         System.out.println("add"+ingredient);
         ingredientService.setIngredient(ingredient);
     }
+    @PutMapping("/update")
+    public void updateIngredient(@RequestBody Ingredient ingredient){
+        System.out.println("update"+ingredient);
+        ingredientService.setIngredient(ingredient);
+    }
     @DeleteMapping("/delete")
     public void deleteIngredient(@RequestBody String id){
         System.out.println("delete" + id);
