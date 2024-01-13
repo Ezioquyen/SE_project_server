@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StaffServiceImp implements StaffService{
@@ -18,8 +19,12 @@ public class StaffServiceImp implements StaffService{
 
     @Override
     public Staff saveStaff(Staff staff) {
-
-        return staffRepository.save(staff);
+        if(staffRepository.existsById(staff.getId())) {
+           return null;
+        } else {
+            staff.setIs_removed(false);
+            return staffRepository.save(staff);
+        }
     }
 
     @Override
@@ -43,14 +48,22 @@ public class StaffServiceImp implements StaffService{
         exisStaff.setGender(staff.getGender());
         exisStaff.setRole(staff.getRole());
         exisStaff.setSalaryPerDay(staff.getSalaryPerDay());
-
-        return saveStaff(exisStaff);
+        return  saveStaff(exisStaff);
     }
 
     @Override
     public void deleteStaff(String id) {
-        staffRepository.deleteAllById(Collections.singleton(id));
+       // staffRepository.deleteAllById(Collections.singleton(id));
 //        staffRepository.findById(id).orElseThrow(null);
-        staffRepository.deleteById(id);
+      //  staffRepository.deleteById(id);
+     //   staffRepository.findById(id);
+        Optional<Staff> optionalStaff = staffRepository.findById(id);
+
+        if (optionalStaff.isPresent()) {
+            Staff staff = optionalStaff.get();
+            // Thực hiện các thao tác với đối tượng Staff đã tìm thấy
+            staff.setIs_removed(true);
+            staffRepository.save(staff);
+        }
     }
 }

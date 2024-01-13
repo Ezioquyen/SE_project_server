@@ -17,28 +17,13 @@ import java.time.LocalDate;
 public class Staff {
     @Id
     private String id;
-
-
     private String name;
-
-
     private String email;
-
-
     private LocalDate dob;
-
-
     private String phoneNumber;
-
-
     private String address;
-
-
     private String gender;
-
-
     private Integer salaryPerDay;
-
-
     private String role;
+    private Boolean is_removed;
 }
