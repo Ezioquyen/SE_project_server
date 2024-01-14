@@ -17,11 +17,11 @@ public interface ProductRepository extends JpaRepository<Product,Integer> {
 
     @Modifying
     @Transactional
-    @Query(value = "update product set is_removed = 1 WHERE id = :id", nativeQuery = true)
+    @Query(value = "update product set is_deleted = 1 WHERE id = :id", nativeQuery = true)
     void removeGroupById(@Param("id") Integer id);
 
     @Modifying
     @Transactional
-    @Query(value = "select * from product where is_removed = false", nativeQuery = true)
+    @Query(value = "select * from product where is_deleted = false", nativeQuery = true)
     List<Product> findAllNotDeleted();
 }
