@@ -25,5 +25,4 @@ public class Staff {
     private String gender;
     private Integer salaryPerDay;
     private String role;
-    private Boolean is_removed;
 }

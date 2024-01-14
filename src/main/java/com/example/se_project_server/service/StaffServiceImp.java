@@ -22,7 +22,6 @@ public class StaffServiceImp implements StaffService{
         if(staffRepository.existsById(staff.getId())) {
            return null;
         } else {
-            staff.setIs_removed(false);
             return staffRepository.save(staff);
         }
 //        return  staffRepository.save(staff);
@@ -30,12 +29,13 @@ public class StaffServiceImp implements StaffService{
 
     @Override
     public List<Staff> getAllStaff() {
-        return staffRepository.findAll();
+
+        return staffRepository.getAll();
     }
 
     @Override
     public Staff getStaffById(String id) {
-        return staffRepository.findById(id).orElseThrow(null);
+        return staffRepository.getById(id);
     }
 
     @Override
@@ -49,23 +49,11 @@ public class StaffServiceImp implements StaffService{
         exisStaff.setGender(staff.getGender());
         exisStaff.setRole(staff.getRole());
         exisStaff.setSalaryPerDay(staff.getSalaryPerDay());
-        exisStaff.setIs_removed(false);
         return  staffRepository.save(exisStaff);
     }
 
     @Override
     public void deleteStaff(String id) {
-       // staffRepository.deleteAllById(Collections.singleton(id));
-//        staffRepository.findById(id).orElseThrow(null);
-//        staffRepository.deleteById(id);
-     //   staffRepository.findById(id);
-        Optional<Staff> optionalStaff = staffRepository.findById(id);
-
-        if (optionalStaff.isPresent()) {
-            Staff staff = optionalStaff.get();
-            // Thực hiện các thao tác với đối tượng Staff đã tìm thấy
-            staff.setIs_removed(true);
-            staffRepository.save(staff);
-        }
+        staffRepository.deleteById(id);
     }
 }
