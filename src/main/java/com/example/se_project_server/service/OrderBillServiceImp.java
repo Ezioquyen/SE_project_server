@@ -6,24 +6,31 @@ import com.example.se_project_server.entity.Product;
 import com.example.se_project_server.repository.BillProductRepository;
 import com.example.se_project_server.repository.OrderBillRepository;
 
+import com.example.se_project_server.repository.ProductRepository;
 import com.example.se_project_server.serializable.BillProductId;
 import org.springframework.stereotype.Service;
 
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+
 
 @Service
 public class OrderBillServiceImp implements OrderBillService {
     private final BillProductRepository billProductRepository;
     private final OrderBillRepository orderBillRepository;
+    private final ProductRepository productRepository;
 
 
-    public OrderBillServiceImp(BillProductRepository billProductRepository, OrderBillRepository orderBillRepository) {
+    public OrderBillServiceImp(BillProductRepository billProductRepository, OrderBillRepository orderBillRepository, ProductRepository productRepository) {
         this.billProductRepository = billProductRepository;
         this.orderBillRepository = orderBillRepository;
+        this.productRepository = productRepository;
     }
 
     @Override
@@ -32,8 +39,10 @@ public class OrderBillServiceImp implements OrderBillService {
         orderBill.setId(bill.get("id").toString());
         orderBill.setTotal(Integer.parseInt(bill.get("total").toString()));
         orderBill.setBuyDate(LocalDate.parse(bill.get("buyDate").toString(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-        if (bill.get("customerPhoneNumber") != null) orderBill.setCustomerPhoneNumber(bill.get("customerPhoneNumber").toString());
+        if (bill.get("customerPhoneNumber") != null)
+            orderBill.setCustomerPhoneNumber(bill.get("customerPhoneNumber").toString());
         orderBill.setUserStaffId(bill.get("userStaffId").toString());
+        if(bill.get("promotionName")!= null)  orderBill.setPromotionName(bill.get("promotionName").toString());
         orderBill.setReceived(Integer.parseInt(bill.get("received").toString()));
         orderBill.setChangeMoney(Integer.parseInt(bill.get("changeMoney").toString()));
         orderBill.setOriginal(Integer.parseInt(bill.get("original").toString()));
@@ -55,4 +64,9 @@ public class OrderBillServiceImp implements OrderBillService {
         }
         return "done";
     }
+    @Override
+    public List<Map<String, Object>> getAllOrderBill() {
+        return orderBillRepository.getAllOrderBill().stream().map(HashMap::new).peek(e -> e.put("products", productRepository.getProductByOrderBill(e.get("id").toString()))).collect(Collectors.toList());
+    }
+
 }

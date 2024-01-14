@@ -5,6 +5,8 @@ import com.example.se_project_server.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+
 @Service
 public class ProductServiceImp implements ProductService{
     private final ProductRepository productRepository;
@@ -15,7 +17,7 @@ public class ProductServiceImp implements ProductService{
 
     @Override
     public List<Product> getAllProduct() {
-        return productRepository.findAll();
+        return productRepository.getAllProduct();
     }
     @Override
     public void setProduct(Product product) {

@@ -34,6 +34,7 @@ public class PromotionServiceImp implements PromotionService {
         promotion.setNeedCondition((Boolean) data.get("condition"));
         promotion.setStartDate(LocalDate.parse(data.get("startDate").toString(), DateTimeFormatter.ofPattern("dd-MM-yyyy")));
         promotion.setEndDate(LocalDate.parse(data.get("endDate").toString(), DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+        productPromotionRepository.deleteAllById(promotion.getId());
         promotionRepository.save(promotion);
         for (Map<String, Object> product : (List<Map<String, Object>>) data.get("products")) {
             ProductPromotion productPromotion = new ProductPromotion();
@@ -57,7 +58,7 @@ public class PromotionServiceImp implements PromotionService {
     @Override
     public Map<String, Object> getPromotionByDate(LocalDate date) {
         Map<String, Object> promotion = new HashMap<>(promotionRepository.getPromotionByDate(date.toString()));
-        promotion.put("products", productPromotionRepository.getByPromotionId((Integer) promotion.get("id")));
+        if(!promotion.isEmpty()) promotion.put("products", productPromotionRepository.getByPromotionId((Integer) promotion.get("id")));
         return promotion;
     }
 

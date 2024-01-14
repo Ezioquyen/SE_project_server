@@ -33,7 +33,7 @@ public class OrderBill {
     private Boolean payMethod;
     private Integer deduction;
     private Integer original;
-    private Integer promotion;
+    private String promotionName;
     @OneToMany(mappedBy = "orderBill")
     private List<BillProduct> billProducts;
 }

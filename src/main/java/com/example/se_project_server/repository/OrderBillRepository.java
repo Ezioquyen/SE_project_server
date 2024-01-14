@@ -9,9 +9,10 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 @Repository
-public interface OrderBillRepository extends JpaRepository<OrderBill,String> {
+public interface OrderBillRepository extends JpaRepository<OrderBill, String> {
     @Query(value = "select p.name, "
             + "case when dd.count is null then 0 "
             + "else dd.count "
@@ -35,13 +36,30 @@ public interface OrderBillRepository extends JpaRepository<OrderBill,String> {
             + "from order_bill as ob "
             + "where ob.buy_date between :dateStart and :dateEnd "
             + "group by name "
-            + "order by name asc;", nativeQuery = true)
+            + "order by name;", nativeQuery = true)
     List<IBillProduct> getProfitPerDay(@Param("dateStart") LocalDateTime dateStart, @Param("dateEnd") LocalDateTime dateEnd);
 
     @Query(value = "select date_format(buy_date, '%Y-%m') as name, sum(total) as count "
             + "from order_bill as ob "
             + "where ob.buy_date between :dateStart and :dateEnd "
             + "group by name "
-            + "order by name asc;", nativeQuery = true)
+            + "order by name;", nativeQuery = true)
     List<IBillProduct> getProfitPerMonth(@Param("dateStart") LocalDateTime dateStart, @Param("dateEnd") LocalDateTime dateEnd);
+
+    @Query(value = """
+            select ob.id, buy_date as buyDate, customer_phone_number as customerPhoneNumber,
+            user_staff_id as userStaffId, total, deduction, promotion_name as promotionName, received,
+            change_money as changeMoney, pay_method as payMethod, original from order_bill ob
+            where ob.id = :id
+            """, nativeQuery = true)
+    Map<String, Object> getOrderBillById(@Param("id") String id);
+
+    @Query(value = """
+            select ob.id, buy_date as buyDate, customer_phone_number as customerPhoneNumber,
+            user_staff_id as userStaffId, total, deduction, promotion_name as promotionName, received,
+            change_money as changeMoney, pay_method as payMethod, original from order_bill ob
+            order by buyDate desc
+                    
+            """, nativeQuery = true)
+    List<Map<String, Object>> getAllOrderBill();
 }
