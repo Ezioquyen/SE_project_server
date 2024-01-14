@@ -4,7 +4,6 @@ import com.example.se_project_server.entity.Staff;
 import com.example.se_project_server.repository.StaffRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,12 +18,10 @@ public class StaffServiceImp implements StaffService{
 
     @Override
     public Staff saveStaff(Staff staff) {
-        if(staffRepository.existsById(staff.getId())) {
-           return null;
-        } else {
-            staff.setIs_removed(false);
+        if(staffRepository.existsById(staff.getId()))
+            return null;
+        else
             return staffRepository.save(staff);
-        }
     }
 
     @Override
@@ -34,7 +31,7 @@ public class StaffServiceImp implements StaffService{
 
     @Override
     public Staff getStaffById(String id) {
-        return staffRepository.findById(id).orElseThrow(null);
+        return staffRepository.getById(id);
     }
 
     @Override
@@ -53,17 +50,6 @@ public class StaffServiceImp implements StaffService{
 
     @Override
     public void deleteStaff(String id) {
-       // staffRepository.deleteAllById(Collections.singleton(id));
-//        staffRepository.findById(id).orElseThrow(null);
-      //  staffRepository.deleteById(id);
-     //   staffRepository.findById(id);
-        Optional<Staff> optionalStaff = staffRepository.findById(id);
-
-        if (optionalStaff.isPresent()) {
-            Staff staff = optionalStaff.get();
-            // Thực hiện các thao tác với đối tượng Staff đã tìm thấy
-            staff.setIs_removed(true);
-            staffRepository.save(staff);
-        }
+        staffRepository.deleteById(id);
     }
 }
