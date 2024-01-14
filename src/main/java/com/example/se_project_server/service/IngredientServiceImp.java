@@ -2,6 +2,10 @@ package com.example.se_project_server.service;
 
 import com.example.se_project_server.entity.Ingredient;
 import com.example.se_project_server.repository.IngredientRepository;
+import jakarta.transaction.Transactional;
+import lombok.experimental.PackagePrivate;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,7 +19,7 @@ public class IngredientServiceImp implements IngredientService{
 
     @Override
     public List<Ingredient> getAllIngredient() {
-        return ingredientRepository.findAll();
+        return ingredientRepository.findAllNotDeleted();
     }
     @Override
     public void setIngredient(Ingredient ingredient){
@@ -24,6 +28,7 @@ public class IngredientServiceImp implements IngredientService{
     }
     @Override
     public void deleteIngredient(Integer id){
-        ingredientRepository.deleteById(id);
+//        ingredientRepository.deleteById(id);
+        ingredientRepository.removeGroupById(id);
     }
 }

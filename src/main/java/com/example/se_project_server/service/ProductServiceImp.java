@@ -15,7 +15,8 @@ public class ProductServiceImp implements ProductService{
 
     @Override
     public List<Product> getAllProduct() {
-        return productRepository.findAll();
+//        return productRepository.findAll();
+        return productRepository.findAllNotDeleted();
     }
     @Override
     public void setProduct(Product product) {
@@ -24,6 +25,7 @@ public class ProductServiceImp implements ProductService{
     }
     @Override
     public void deleteProduct(Integer id) {
-        productRepository.deleteById(id);
+//        productRepository.deleteById(id);
+        productRepository.removeGroupById(id);
     }
 }
