@@ -25,6 +25,7 @@ public class StaffServiceImp implements StaffService{
             staff.setIs_removed(false);
             return staffRepository.save(staff);
         }
+//        return  staffRepository.save(staff);
     }
 
     @Override
@@ -48,14 +49,15 @@ public class StaffServiceImp implements StaffService{
         exisStaff.setGender(staff.getGender());
         exisStaff.setRole(staff.getRole());
         exisStaff.setSalaryPerDay(staff.getSalaryPerDay());
-        return  saveStaff(exisStaff);
+        exisStaff.setIs_removed(false);
+        return  staffRepository.save(exisStaff);
     }
 
     @Override
     public void deleteStaff(String id) {
        // staffRepository.deleteAllById(Collections.singleton(id));
 //        staffRepository.findById(id).orElseThrow(null);
-      //  staffRepository.deleteById(id);
+//        staffRepository.deleteById(id);
      //   staffRepository.findById(id);
         Optional<Staff> optionalStaff = staffRepository.findById(id);
 
