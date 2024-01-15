@@ -13,16 +13,11 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/users")
 public class UserController {
-    private UserService userService;
+    private final UserService userService;
 
-    @Autowired
+
     public UserController(UserService userService) {
         this.userService = userService;
-    }
-
-    @GetMapping("/find-all")
-    public List<User> findAllUser(){
-        return userService.findAllUser();
     }
 
     @GetMapping("/getAll")
@@ -31,23 +26,29 @@ public class UserController {
     }
 
 
-    @GetMapping("/find/{id}")
-    public Optional<User> findById(@PathVariable int id){
-        return userService.findUserById(id);
+    @GetMapping("/getByUsername/{username}")
+    public ResponseEntity<?> getUserByUsername(@PathVariable String username){
+        return ResponseEntity.ok(userService.getUserByUsername(username));
+    }
+    @GetMapping("/getBySearch/{stringSearch}")
+    public ResponseEntity<?> getBySearch(@PathVariable String stringSearch){
+        return ResponseEntity.ok(userService.getBySearch(stringSearch));
+    }
+    @PostMapping("/addUser")
+    public ResponseEntity<?> addUser(@RequestBody User user){
+        userService.setUser(user);
+        return ResponseEntity.ok(null);
     }
 
-    @PostMapping("/add-user")
-    public void addUser(@RequestBody User user){
-        userService.addUser(user);
+    @PutMapping("/updateUser")
+    public ResponseEntity<?> updateUser(@RequestBody User user){
+        userService.setUser(user);
+        return ResponseEntity.ok(null);
     }
 
-    @PutMapping("/update")
-    public void updateUser(@RequestBody User user){
-        userService.updateUser(user);
-    }
-
-    @DeleteMapping("/delete/{id}")
-    public void deleteUser(@PathVariable int id){
-        userService.deleteUserById(id);
+    @DeleteMapping("/deleteUser/{id}")
+    public ResponseEntity<?> deleteUser(@PathVariable int id){
+        userService.deleteUser(id);
+        return ResponseEntity.ok(null);
     }
 }

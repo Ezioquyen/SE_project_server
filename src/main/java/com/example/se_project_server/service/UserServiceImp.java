@@ -11,9 +11,9 @@ import java.util.Optional;
 @Component
 public class UserServiceImp implements UserService {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    @Autowired
+
     public UserServiceImp(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
@@ -23,42 +23,24 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public List<User> findAllUser() {
-        return userRepository.findAll();
+    public List<User> getBySearch(String stringSearch) {
+        return userRepository.getBySearch(stringSearch);
+    }
+
+
+
+    @Override
+    public List<User> getUserByUsername(String username) {
+        return userRepository.getUserByUsername(username);
     }
 
     @Override
-    public Optional<User> findUserById(int id) {
-        return userRepository.findById(id);
+    public void setUser(User user) {
+        userRepository.save(user);
     }
 
     @Override
-    public boolean addUser(User user) {
-        if(userRepository.existsById(user.getId())){
-            return false;
-        }else{
-            userRepository.save(user);
-            return true;
-        }
-    }
-
-    @Override
-    public boolean updateUser(User user) {
-        if(userRepository.existsById(user.getId())){
-            userRepository.saveAndFlush(user);
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-    @Override
-    public boolean deleteUserById(int id) {
-        if(userRepository.existsById(id)){
-            userRepository.deleteById(id);
-            return true;
-        }else{
-            return false;
-        }
+    public void deleteUser(Integer id) {
+        userRepository.deleteById(id);
     }
 }

@@ -8,8 +8,5 @@ public class SeProjectServerApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SeProjectServerApplication.class, args);
-		System.out.println("yx");
 	}
-
-
 }

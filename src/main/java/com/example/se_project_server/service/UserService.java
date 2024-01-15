@@ -8,10 +8,10 @@ import java.util.Optional;
 
 @Service
 public interface UserService {
-    List<User> findAllUser ();
-    Optional<User> findUserById(int id);
-    boolean addUser(User user);
-    boolean updateUser(User user);
-    boolean deleteUserById(int id);
+    List<User> getUserByUsername(String username);
+    void setUser(User user);
+    void deleteUser(Integer id);
     List<User> getAllUsers();
+
+    List<User> getBySearch(String stringSearch);
 }

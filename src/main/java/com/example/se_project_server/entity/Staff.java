@@ -27,7 +27,7 @@ public class Staff {
     private LocalDate dob;
     private String phoneNumber;
     private String address;
-    private Boolean gender;
+    private String gender;
     private Integer salaryPerDay;
     private String role;
 }
