@@ -4,6 +4,7 @@ import com.example.se_project_server.entity.Staff;
 import com.example.se_project_server.repository.StaffRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,15 +19,18 @@ public class StaffServiceImp implements StaffService{
 
     @Override
     public Staff saveStaff(Staff staff) {
-        if(staffRepository.existsById(staff.getId()))
-            return null;
-        else
+        if(staffRepository.existsById(staff.getId())) {
+           return null;
+        } else {
             return staffRepository.save(staff);
+        }
+//        return  staffRepository.save(staff);
     }
 
     @Override
     public List<Staff> getAllStaff() {
-        return staffRepository.findAll();
+
+        return staffRepository.getAll();
     }
 
     @Override
@@ -45,7 +49,7 @@ public class StaffServiceImp implements StaffService{
         exisStaff.setGender(staff.getGender());
         exisStaff.setRole(staff.getRole());
         exisStaff.setSalaryPerDay(staff.getSalaryPerDay());
-        return  saveStaff(exisStaff);
+        return  staffRepository.save(exisStaff);
     }
 
     @Override
