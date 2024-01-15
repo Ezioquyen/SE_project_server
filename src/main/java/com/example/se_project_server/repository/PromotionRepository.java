@@ -24,9 +24,14 @@ public interface PromotionRepository extends JpaRepository<Promotion,Integer> {
    Map<String,Object> getPromotionByDate(@Param("date") String date);
 
     @Query(value = """
-       select IF(exists(select id from promotion where end_date>=:startDate and id!= :id), 'false', 'true')
-       from promotion;
+                     select distinct IF(
+                     exists(
+                     select id from promotion where
+                     ((end_date between :startDate and :endDate)
+                      or (start_date between :startDate and :endDate))
+                      and id != :id), 'false', 'true')
+                     from promotion
     """,nativeQuery = true)
-    Boolean checkPromotion(@Param("startDate") String startDate,@Param("id") Integer id);
+    Boolean checkPromotion(@Param("startDate") String startDate,@Param("endDate") String endDate,@Param("id") Integer id);
 
 }

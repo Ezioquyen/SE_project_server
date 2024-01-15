@@ -30,8 +30,8 @@ public class PromotionController {
         return  ResponseEntity.ok(promotionService.getPromotionByDate(date));
     }
     @GetMapping("/check/{id}")
-    public boolean checkPromotion(@RequestParam(name = "date") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate start,@PathVariable("id")Integer id){
-        return promotionService.checkPromotion(start,id);
+    public boolean checkPromotion(@RequestParam(name = "startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate start,@RequestParam(name = "endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate end,@PathVariable("id")Integer id){
+        return promotionService.checkPromotion(start,end,id);
     }
     @DeleteMapping("/delete/{id}")
     public void delete(@PathVariable("id")Integer id){

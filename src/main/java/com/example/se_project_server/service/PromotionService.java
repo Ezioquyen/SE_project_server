@@ -11,6 +11,6 @@ public interface PromotionService {
     void savePromotion(Map<String,Object> promotion);
     List<Map<String,Object>> getAllPromotion();
     Map<String,Object> getPromotionByDate(LocalDate date);
-    Boolean checkPromotion(LocalDate start,Integer id);
+    Boolean checkPromotion(LocalDate start,LocalDate end,Integer id);
     void deletePromotion(Integer id);
 }
