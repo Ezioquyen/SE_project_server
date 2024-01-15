@@ -19,11 +19,7 @@ public class StaffServiceImp implements StaffService{
 
     @Override
     public Staff saveStaff(Staff staff) {
-        if(staffRepository.existsById(staff.getId())) {
-           return null;
-        } else {
-            return staffRepository.save(staff);
-        }
+        return staffRepository.save(staff);
 //        return  staffRepository.save(staff);
     }
 
