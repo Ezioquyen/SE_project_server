@@ -32,17 +32,17 @@ public class StaffController {
     }
 
     @GetMapping("/getById/{id}")
-    public ResponseEntity<Staff> getStaffById(@PathVariable("id") Integer id) {
+    public ResponseEntity<Staff> getStaffById(@PathVariable("id") String id) {
         return ResponseEntity.ok(staffService.getStaffById(id));
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Staff> updateStaff(@RequestBody Staff staff, @PathVariable("id") Integer id) {
+    public ResponseEntity<Staff> updateStaff(@RequestBody Staff staff, @PathVariable("id") String id) {
         return ResponseEntity.ok(staffService.updateStaff(staff, id));
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteStaff(@PathVariable("id") Integer id){
+    public ResponseEntity<String> deleteStaff(@PathVariable("id") String id){
         staffService.deleteStaff(id);
         return ResponseEntity.ok("Delete success");
     }

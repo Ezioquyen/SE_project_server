@@ -64,7 +64,9 @@ public class PromotionServiceImp implements PromotionService {
 
     @Override
     public Boolean checkPromotion(LocalDate start,LocalDate end,Integer id) {
-        return promotionRepository.checkPromotion(start.toString(),end.toString(),id);
+
+        if(promotionRepository.checkPromotion(start.toString(),end.toString(),id)==null) return true;
+        else return promotionRepository.checkPromotion(start.toString(),end.toString(),id);
     }
 
     @Override
