@@ -17,7 +17,6 @@ public class Promotion {
     private String information;
     private LocalDate startDate;
     private LocalDate endDate;
-    private Boolean needCondition;
     private String name;
     @OneToMany(mappedBy = "promotion")
     @JsonIgnore

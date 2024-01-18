@@ -13,12 +13,12 @@ import java.util.Map;
 @Repository
 public interface PromotionRepository extends JpaRepository<Promotion,Integer> {
     @Query(value = """
-    select id, information, start_date startDate, end_date endDate, need_condition needCondition, name from promotion
+    select id, information, start_date startDate, end_date endDate, name from promotion
     order by startDate desc
 """,nativeQuery = true )
     List<Map<String,Object>> getAll();
     @Query(value = """
-                select id, information, start_date startDate, end_date endDate, need_condition needCondition, name from promotion
+                select id, information, start_date startDate, end_date endDate, name from promotion
                 where start_date<=:date and end_date >=:date
             """,nativeQuery = true )
    Map<String,Object> getPromotionByDate(@Param("date") String date);

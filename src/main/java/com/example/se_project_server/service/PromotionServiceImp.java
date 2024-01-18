@@ -31,7 +31,6 @@ public class PromotionServiceImp implements PromotionService {
         promotion.setId((Integer) data.get("id"));
         promotion.setName(data.get("name").toString());
         promotion.setInformation(data.get("information").toString());
-        promotion.setNeedCondition((Boolean) data.get("condition"));
         promotion.setStartDate(LocalDate.parse(data.get("startDate").toString(), DateTimeFormatter.ofPattern("dd-MM-yyyy")));
         promotion.setEndDate(LocalDate.parse(data.get("endDate").toString(), DateTimeFormatter.ofPattern("dd-MM-yyyy")));
         productPromotionRepository.deleteAllById(promotion.getId());
