@@ -1,5 +1,6 @@
 package com.example.se_project_server.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,6 +9,7 @@ import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.util.List;
 
 
 @Getter
@@ -28,4 +30,7 @@ public class Staff {
     private String gender;
     private Integer salaryPerDay;
     private String role;
+    @JsonIgnore
+    @OneToMany(mappedBy = "staff")
+    private List<Timekeeping> timekeepings;
 }

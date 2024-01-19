@@ -21,7 +21,7 @@ public class Timekeeping {
     private TimekeepingId id;
     @ManyToOne
     @MapsId("staffId")
-    @JoinColumn(name = "staff_id")
+    @JoinColumn(name = "staff_id", referencedColumnName = "id", insertable = false, updatable = false)
     @JsonIgnore
     private Staff staff;
 }
